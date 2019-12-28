@@ -27,10 +27,14 @@ export default function App() {
           value={enteredGoal}
         />
         <Button title="ADD" onPress={addGoalHandler} />
-        <Text>{enteredGoal}</Text>
-        <Text>{courseGoals}</Text>
+        {/* <Text>{enteredGoal}</Text> */}
+        {/* <Text>{courseGoals}</Text> */}
       </View>
-      <View></View>
+      <View>
+        {courseGoals.map(goal => {
+          return <Text key={goal}>{goal}</Text>;
+        })}
+      </View>
     </View>
   );
 }
