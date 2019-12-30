@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ScrollView
+} from "react-native";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -30,7 +37,7 @@ export default function App() {
         {/* <Text>{enteredGoal}</Text> */}
         {/* <Text>{courseGoals}</Text> */}
       </View>
-      <View>
+      <ScrollView>
         {courseGoals.map(goal => {
           return (
             <View key={goal} style={styles.listItem}>
@@ -38,7 +45,7 @@ export default function App() {
             </View>
           );
         })}
-      </View>
+      </ScrollView>
     </View>
   );
 }
