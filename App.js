@@ -5,9 +5,10 @@ import {
   View,
   TextInput,
   Button,
-  ScrollView,
   FlatList
 } from "react-native";
+
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -17,16 +18,16 @@ export default function App() {
     setEnteredGoal(enteredText);
   };
 
-  const addGoalHandler = () => {
-    console.log(enteredGoal);
-    //setCourseGoals([...courseGoals, enteredGoal]);
-    // use the functional form of setCourseGoals to make sure I have the latest state
-    setCourseGoals(currentGoals => [
-      ...currentGoals,
-      { id: Math.random().toString(), value: enteredGoal }
-    ]);
-    setEnteredGoal("");
-  };
+  // const addGoalHandler = () => {
+  //   console.log(enteredGoal);
+  //   //setCourseGoals([...courseGoals, enteredGoal]);
+  //   // use the functional form of setCourseGoals to make sure I have the latest state
+  //   setCourseGoals(currentGoals => [
+  //     ...currentGoals,
+  //     { id: Math.random().toString(), value: enteredGoal }
+  //   ]);
+  //   setEnteredGoal("");
+  // };
 
   const addGoalHandler = () => {
     setCourseGoals(currentGoals => [
@@ -51,11 +52,7 @@ export default function App() {
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
-        renderItem={itemData => (
-          <View style={styles.listItem}>
-            <Text>{itemData.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemData => <GoalItem title={itemData.item.value} />}
       />
     </View>
   );
@@ -75,12 +72,5 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     padding: 10
-  },
-  listItem: {
-    padding: 10,
-    marginVertical: 6,
-    backgroundColor: "#ccc",
-    borderColor: "black",
-    borderWidth: 1
   }
 });
